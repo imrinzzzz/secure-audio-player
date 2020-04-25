@@ -10,4 +10,61 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 
+    <a class="start"></a>
+
+    <div id="stage">
+
+        <h1>Secure Audio Player</h1>
+
+        <div id="page1">
+            <div class="content">
+                <div>Do you want to...?</div>
+                <a class="button encrypt blue">Encrypt</a>
+                <a class="button decrypt blue">Decrypt</a>
+            </div>
+        </div>
+
+        <div id="page2">
+            <div class="content if-encrypt">
+                <div>Encrypt</div>
+                <div>Upload your audio file</div>
+                <input type="file" class="button blue" accept=".wav, .mp3" />
+                <div>*Support only .mp3, .wav file type</div>
+            </div>
+
+            <div class="content if-decrypt">
+                <div>Decrypt</div>
+                <div>Upload your audio file</div>
+                <input type="file" class="button blue" accept=".wav, .mp3" />
+                <div>*Support only .mp3, .wav file type encrypted by this tool</div>
+            </div>
+        </div>
+
+        <div id="page3">
+            <div class="content if-encrypt">
+                <div>Enter a pass phrase</div>
+                <div>This phrase will b eused as an encryption key. You won't be able to decrypt the file without it!</div>
+
+                <input type="password" />
+                <a class="button black">Encrypt and Download</a>
+            </div>
+
+            <div class="content if-decrypt">
+                <div>Enter the pass phrase</div>
+                <div>Enter the pass phrase that was used to encrypt this file.</div>
+
+                <input type="password" />
+                <a class="button black">Decrypt</a>
+                <div id="play-audio">
+                    <audio controls>
+                        <source src="" type="audio/mp3" />
+                        <source src="" type="audio/wav" />
+                        Your browser dows not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </html>
