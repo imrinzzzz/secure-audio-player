@@ -38,7 +38,7 @@ $(function () {
         file = in_file.target.files;
 
         if (file.length != 1) {
-            alert('Please select an audio file to decrypt!!' );
+            alert('Please select an audio file to decrypt!!');
             return false;
         } else {
             alert('The file "' + file[0].name + '" has been selected.');
@@ -55,7 +55,7 @@ $(function () {
 
         let fr = new FileReader();
         if (body.hasClass('encrypt')) {
-            fr.onload = function() {
+            fr.onload = function () {
                 var arrayBuffer = fr.result;
                 console.log("arrayBuffer: ");
                 console.log(arrayBuffer);
@@ -63,7 +63,6 @@ $(function () {
             };
             fr.readAsArrayBuffer(file[0]);
 
-            //     a = $('#download')
             //     fr.onload = function (e) {
             //         // textread = e.target.result;
             //         // enctext = UU.callEncrypt(textread);
@@ -72,7 +71,6 @@ $(function () {
             //         a.attr('download', file.name + '.encrypted');
             //     }
             //     fr.readAsDataURL(file);
-            //     window.open($('#test').attr('href'));
             // } else if(body.hasClass('decrypt')) {
             //     fr.onload = function(e) {
             //         var decrypted = CryptoJS.AES.decrypt(e.target.result, password).toString(CryptoJS.enc.Latin1);
@@ -80,20 +78,30 @@ $(function () {
             //         a.attr('download', file.name.replace('.encrypted', ''));
             //     }
             //     fr.readAsText(file);
+        } else if (body.hasClass('decrypt')) {
+            fr.onload = function () {
+                var arrayBuffer = fr.result;
+                console.log("arrayBuffer: ");
+                console.log(arrayBuffer);
+                audioContext.decodeAudioData(arrayBuffer, play);
+            };
+            fr.readAsArrayBuffer(file[0]);
         }
 
-    })
+    });
 
-    function decodedDone(decoded) {
-        var typedArray = new Float32Array(decoded.length);
-        typedArray=decoded.getChannelData(0);
-        console.log("typedArray: ");
-        console.log(typedArray);
-
+    function play(decoded) {
         const source = audioContext.createBufferSource();
         source.buffer = decoded;
         source.connect(audioContext.destination);
         source.start();
+    }
+
+    function decodedDone(decoded) {
+        var typedArray = new Float32Array(decoded.length);
+        typedArray = decoded.getChannelData(0);
+        console.log("typedArray: ");
+        console.log(typedArray);
     }
 
     // ================================== OTHER ================================== //
