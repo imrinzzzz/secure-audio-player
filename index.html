@@ -5,21 +5,22 @@
     <meta charset="utf-8" />
     <title>Secure Audio Player</title>
     <link href="style.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
     <script src="script.js"></script>
-    <script src="aes.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 
+<body>
     <a class="start"></a>
 
     <div id="stage">
 
-        <h1>Secure Audio Player</h1>
+        <!-- <h1>Secure Audio Player</h1> -->
 
         <div id="page1">
             <div class="content">
                 <div>Do you want to...?</div>
-                <a class="button encrypt blue">Encrypt</a>
+                <a id="hello" class="button encrypt blue">Encrypt</a>
                 <a class="button decrypt blue">Decrypt</a>
             </div>
         </div>
@@ -30,7 +31,7 @@
                 <div>Upload your audio file</div>
                 <a class="button blue">Upload Audio</a>
                 <div>*Support only .mp3, .wav file type</div>
-                
+
                 <input type="file" id="encrypt-input" accept=".wav, .mp3" />
             </div>
 
@@ -39,7 +40,7 @@
                 <div>Upload your audio file</div>
                 <a class="button blue">Upload Audio</a>
                 <div>*Support only .mp3, .wav file type encrypted by this tool</div>
-            
+
                 <input type="file" id="decrypt-input" accept=".wav, .mp3" />
             </div>
         </div>
@@ -47,7 +48,8 @@
         <div id="page3">
             <div class="content if-encrypt">
                 <div>Enter a pass phrase</div>
-                <div>This phrase will b eused as an encryption key. You won't be able to decrypt the file without it!</div>
+                <div>This phrase will b eused as an encryption key. You won't be able to decrypt the file without it!
+                </div>
 
                 <input type="password" />
                 <a class="button black">Encrypt and Download</a>
@@ -69,6 +71,13 @@
             </div>
         </div>
 
+        <div id="page4">
+            <div class="content">
+                <div>Your file is ready!</div>
+                <a class="button download">Download</a>
+            </div>
+        </div>
     </div>
-
+    
+</body>
 </html>
