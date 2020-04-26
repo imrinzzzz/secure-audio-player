@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <title>Secure Audio Player</title>
     <link href="style.css" rel="stylesheet" />
+    <script src="//cdn.polyfill.io/v1/polyfill.min.js" async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
     <script src="script.js"></script>
@@ -47,20 +48,12 @@
 
         <div id="page3">
             <div class="content if-encrypt">
-                <div>Enter a pass phrase</div>
-                <div>This phrase will b eused as an encryption key. You won't be able to decrypt the file without it!
-                </div>
-
-                <input type="password" />
-                <a class="button black">Encrypt and Download</a>
+                <a class="button black process">Encrypt and Download</a>
+                <a id="download"></a>
+                <a id="test" href="https://www.google.com/"></a>
             </div>
 
             <div class="content if-decrypt">
-                <div>Enter the pass phrase</div>
-                <div>Enter the pass phrase that was used to encrypt this file.</div>
-
-                <input type="password" />
-                <a class="button black">Decrypt</a>
                 <div id="play-audio">
                     <audio controls>
                         <source src="" type="audio/mp3" />
@@ -71,12 +64,6 @@
             </div>
         </div>
 
-        <div id="page4">
-            <div class="content">
-                <div>Your file is ready!</div>
-                <a class="button download">Download</a>
-            </div>
-        </div>
     </div>
     
 </body>
