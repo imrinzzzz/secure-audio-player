@@ -20,12 +20,14 @@ body.decrypt .if-decrypt {
 }
 
 body{
-    font:15px/1.3 'Raleway', sans-serif;
+    font-weight: 500;
     color: black;
     width:100%;
     height:100%;
     position:absolute;
     overflow:hidden;
+    background-color: #076AE1;
+    font-family: 'Roboto', sans-serif;
 }
 
 #stage{
@@ -42,28 +44,37 @@ body{
     position:relative;
 }
 
-/* #stage h1{
-    font-weight:normal;
-    font-size:48px;
-    text-align:center;
-    color:#fff;
-    margin-bottom:60px;
+
+.inside {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-#stage h2{
-    font-weight: normal;
-    font-size: 14px;
-    font-family: Arial, Helvetica, sans-serif;
-    margin: -40px 0 45px;
-    font-style: italic;
-} */
+.inside > h1 {
+    top: 20%;
+    transform: translateY(-50%);
+}
+
+.h2 {
+    top: 20%;
+    padding-bottom: 2%;
+    transform: translateY(-50%);
+    font-size: larger;
+    font-weight: bolder;
+    color: #076AE1;
+}
 
 .content{
     position:absolute;
     text-align:center;
-    left:0;
+    left: 50%;
     top:50%;
-    width:100%;
+    width:80%;
+    height: 70%;
+    background-color: white;
+    border-radius: 100px;
+    transform: translate(-50%, -50%);
 }
 
 .content input[type=file] {
@@ -92,23 +103,36 @@ a.start:hover {
 
 a, a:visited {
 	outline:none;
-	color:#389dc1;
 }
 
 a:hover{
     text-decoration:none;
+    transform: scale(1.05);
+    transition: initial 0.25s ease;
 }
 
 .button {
-    padding: 10px;
+    padding: 5px 20px;
+    color: white;
     display: inline-block;
-    background-color: aquamarine;
     text-align: center;
     text-decoration: none !important;
-    border-radius: 9px;
+    border-radius: 25px;
     opacity: 0.9;
     cursor: pointer;
     margin: 10px auto;
+}
+
+#encrypt-page1 {
+    margin-right: 10px;
+}
+
+.blue {
+    background-color: #076AE1;
+}
+
+.black {
+    background-color: black;
 }
 
 .button:hover {
@@ -121,4 +145,12 @@ a:hover{
     vertical-align: middle;
 	box-shadow:3px 3px 0 rgba(0,0,0,0.08);
 	cursor: pointer;
+}
+
+.comment {
+    font-size: x-small;
+}
+
+audio {
+    margin-top: 12px;
 }

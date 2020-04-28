@@ -6,7 +6,7 @@
     <title>Secure Audio Player</title>
     <link rel="icon" sizes="16x16" href="img/icon.ico" />
     <link href="style.css" rel="stylesheet" />
-    <!-- <script src="//cdn.polyfill.io/v1/polyfill.min.js" async defer></script> -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
     <script src="password.json" type="text/javascript"></script>
@@ -15,66 +15,89 @@
 
 <body>
     <a class="start"></a>
-    <h1>Secure Audio Player</h1>
     <div id="stage">
-
 
         <div id="page1">
             <div class="content">
-                <div>Do you want to...?</div>
-                <a id="hello" class="button encrypt blue">Encrypt</a>
-                <a class="button decrypt blue">Decrypt</a>
+                <div class="inside">
+                    <h1>Secure Audio Player</h1>
+                    <div>Do you want to...?</div>
+                    <a id="encrypt-page1" class="button encrypt blue">Encrypt</a>
+                    <a class="button decrypt blue">Decrypt</a>
+                </div>
             </div>
         </div>
 
         <div id="page2">
             <div class="content if-encrypt">
-                <div>Encrypt</div>
-                <div>Upload your audio file</div>
-                <a class="button blue">Upload Audio</a>
-                <div>*Support only .mp3, .wav file type</div>
+                <div class="inside">
+                    <h1>Secure Audio Player</h1>
+                    <div class="h2">Encrypt</div>
+                    <div>Upload your audio file</div>
+                    <a class="button blue">Upload Audio</a>
+                    <div class="comment">*Support only .mp3, .wav file type</div>
 
-                <input type="file" id="encrypt-input" accept=".wav, .mp3" />
+                    <input type="file" id="encrypt-input" accept=".wav, .mp3" />
+                </div>
             </div>
-
             <div class="content if-decrypt">
-                <div>Decrypt</div>
-                <div>Upload your audio file</div>
-                <a class="button blue">Upload Encrypted File</a>
-                <div>*Support only .encrypted file type encrypted by this tool</div>
+                <div class="inside">
+                    <h1>Secure Audio Player</h1>
+                    <div class="h2">Decrypt</div>
+                    <div>Upload your audio file</div>
+                    <a class="button blue">Upload Encrypted File</a>
+                    <div class="comment">*Support only .encrypted file type encrypted by this tool</div>
 
-                <input type="file" id="decrypt-input" accept=".encrypted" />
+                    <input type="file" id="decrypt-input" accept=".encrypted" />
+                </div>
             </div>
         </div>
 
         <div id="page3">
             <div class="content if-encrypt">
-                <a class="button black process">Encrypt File</a>
-                <div>*This process may take awhile.</div>
+                <div class="inside">
+                    <h1>Secure Audio Player</h1>
+                    <div class="h2">Encrypt</div>
+                    <a class="button blue process">Encrypt File</a>
+                    <div class="comment">*This process may take awhile.</div>
+                </div>
             </div>
 
             <div class="content if-decrypt">
-                <div id="play-audio">
-                    <a class="button black process">Decrypt File</a>
-                    <div>*This process may take awhile.</div>
+                <div class="inside">
+                    <h1>Secure Audio Player</h1>
+                    <div class="h2">Decrypt</div>
+                    <a class="button blue process">Decrypt File</a>
+                    <div class="comment">*This process may take awhile.</div>
                 </div>
             </div>
         </div>
 
         <div id="page4">
             <div class="content if-encrypt">
-                <a class="button" id="download">Download</a>
+                <div class="inside">
+                    <h1>Secure Audio Player</h1>
+                    <div class="h2">Encrypt</div>
+                    <div>Click to download the encrypted file 👇</div>
+                    <a class="button black" id="download">Download</a>
+                </div>
             </div>
 
             <div class="content if-decrypt">
-                <audio controls id="audio" controlsList="nodownload">
-                    <source src="" id="audioSrc" />
-                    Your browser dows not support the audio element.
-                </audio>
+                <div class="inside">
+                    <h1>Secure Audio Player</h1>
+                    <div class="h2">Decrypt</div>
+                    <div>Here is the decrypted audio 👇</div>
+                    <audio controls id="audio" controlsList="nodownload">
+                        <source src="" id="audioSrc" />
+                        Your browser dows not support the audio element.
+                    </audio>
+                </div>
             </div>
         </div>
 
     </div>
-    
+
 </body>
+
 </html>
