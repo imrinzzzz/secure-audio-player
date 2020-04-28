@@ -23,24 +23,29 @@ $(function () {
     $('#page2').on('change', '#encrypt-input', function (in_file) {
 
         file = in_file.target.files;
+        var extension = file[0].name.split('.').pop();
 
         if (file.length != 1) {
             alert('Please select a file to encrypt!!');
             return false;
-        } else {
+        } else if (extension == "mp3" || extension == "wav") {
             alert('The file "' + file[0].name + '" has been selected.');
-            encryptFile();
             page(3);
+        } else {
+            alert('Please only choose .mp3 or .wav!!');
         }
     });
 
     $('#page2').on('change', '#decrypt-input', function (in_file) {
 
         file = in_file.target.files;
+        var extension = file[0].name.split('.').pop();
 
         if (file.length != 1) {
             alert('Please select an audio file to decrypt!!');
             return false;
+        } else if (extension != "encrypted") {
+            alert('Please only choose .encrypted!!')
         } else {
             alert('The file "' + file[0].name + '" has been selected.');
             page(3);
@@ -55,49 +60,61 @@ $(function () {
         password = data[0].password
     });
     var audioContext = new AudioContext();
-    var a = $('#download');
     // var a = $('#download_page4');
 
     $('a.button.process').click(function () {
 
+        let fr = new FileReader();
+
         if (body.hasClass('encrypt')) {
+            var a = $('#download');
+            fr.onload = function () {
+                var arrayBuffer = fr.result;
+                var wordArray = CryptoJS.lib.WordArray.create(arrayBuffer);
+                var encr = CryptoJS.AES.encrypt(wordArray, password)
+                a.attr('href', 'data:application/octet-stream,' + encr)
+                a.attr('download', file[0].name + ".encrypted")
+
+                page(4);
+            }
+            fr.readAsArrayBuffer(file[0]);
+
         } else if (body.hasClass('decrypt')) {
+            var audio = $('#audio')
+            var asrc = $('#audioSrc')
+            var extension = file[0].name.split('.')[1]
+            console.log(extension)
             fr.onload = function () {
                 var arrayBuffer = fr.result;
                 var decr = CryptoJS.AES.decrypt(arrayBuffer, password)
-                // console.log(arrayBuffer);
                 var arr = base64DecToArr(decr.toString(CryptoJS.enc.Base64));
                 audioContext.decodeAudioData(arr.buffer, (buffer) => {
-                    alert('success decoding buffer');
-                    // play(buffer);
+                    console.log('Success decoding buffer');
+                    const source = audioContext.createBufferSource();
+                    source.buffer = buffer;
+                    // source.connect(audioContext.destination);
+                    const blob = (extension=="wav") ? new Blob([buffer], {type: "audio/wav"}) : new Blob([buffer], {type: "audio/mp3"})
+                    const url = window.URL.createObjectURL(blob)
+                    asrc.src = source
+                    // audio.load()
+                    window.URL.revokeObjectURL(url)
+                    page(4)
                 }, (err) => {
-                    alert('couldn\'t decode buffer');
+                    console.log('Couldn\'t decode buffer')
+                    alert('Make sure the chosen file is encrypted by this tool.');
                 });
             };
-            fr.readAsArrayBuffer(file[0]);
+            fr.readAsText(file[0]);
         }
 
     });
 
-    function encryptFile() {
-        let fr = new FileReader();
-        var arrayBuffer = fr.result;
-        var wordArray = CryptoJS.lib.WordArray.create(arrayBuffer);
-        var encr = CryptoJS.AES.encrypt(wordArray, password)
-        a.attr('href', 'data:application/octet-stream,' + encr)
-        a.attr('download', file[0].name + ".encrypted")
-        // audioContext.decodeAudioData(arrayBuffer, decodedDone);
-
-        fr.readAsArrayBuffer(file[0]);
-    }
-
-    function decodedDone(decoded) {
-        // var typedArray = new Float32Array(decoded.length);
-        // typedArray = decoded.getChannelData(0);
-        // console.log("typedArray: ");
-        // console.log(typedArray);
-        // console.log(decoded)
-    }
+    back.click(function() {
+        $('#page2 input[type=file]').replaceWith(function() {
+            return $(this).clone()
+        });
+        page(1);
+    })
 
     // ================================== OTHER ================================== //    
     function page(i) {

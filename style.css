@@ -73,7 +73,9 @@ body{
 a.start {
     width: 32px;
     height: 32px;
-    background-image: url('../img/up.svg') no-repeat -192px 0;
+    background: url('../img/up.svg');
+    background-size: 32px 32px;
+    background-repeat: no-repeat;
     position: absolute;
     cursor: pointer;
     top: 50px;

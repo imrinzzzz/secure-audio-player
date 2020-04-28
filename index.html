@@ -40,34 +40,37 @@
             <div class="content if-decrypt">
                 <div>Decrypt</div>
                 <div>Upload your audio file</div>
-                <a class="button blue">Upload Audio</a>
-                <div>*Support only .mp3, .wav file type encrypted by this tool</div>
+                <a class="button blue">Upload Encrypted File</a>
+                <div>*Support only .encrypted file type encrypted by this tool</div>
 
-                <input type="file" id="decrypt-input" accept=".wav, .mp3" />
+                <input type="file" id="decrypt-input" accept=".encrypted" />
             </div>
         </div>
 
         <div id="page3">
             <div class="content if-encrypt">
-                <a class="button black process" id="download">Encrypt and Download</a>
-                <!-- <a id="download"></a> -->
+                <a class="button black process">Encrypt File</a>
+                <div>*This process may take awhile.</div>
             </div>
 
             <div class="content if-decrypt">
                 <div id="play-audio">
-                    <a class="button black process">Test play sound</a>
-                    <audio controls>
-                        <source src="" type="audio/mp3" />
-                        <source src="" type="audio/wav" />
-                        Your browser dows not support the audio element.
-                    </audio>
+                    <a class="button black process">Decrypt File</a>
+                    <div>*This process may take awhile.</div>
                 </div>
             </div>
         </div>
 
         <div id="page4">
-            <div class="content">
-                <a class="button" id="download_page4">Download</a>
+            <div class="content if-encrypt">
+                <a class="button" id="download">Download</a>
+            </div>
+
+            <div class="content if-decrypt">
+                <audio controls id="audio">
+                    <source src="" id="audioSrc" />
+                    Your browser dows not support the audio element.
+                </audio>
             </div>
         </div>
 
