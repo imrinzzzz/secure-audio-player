@@ -3,3 +3,8 @@
 
 
 password.json
+node_modules
+firebase.json
+.firebaserc
+package-lock.json
+public/*
