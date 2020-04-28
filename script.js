@@ -29,6 +29,7 @@ $(function () {
             return false;
         } else {
             alert('The file "' + file[0].name + '" has been selected.');
+            encryptFile();
             page(3);
         }
     });
@@ -48,23 +49,18 @@ $(function () {
 
     // ================================== page 3 ================================== //
 
-    var password = "AQuickBrownFoxJumpsOverTheLazyDog";
+    // var password = JSON.parse(password);
+    var password = "";
+    $.getJSON("password.json").then(function (data) {
+        password = data[0].password
+    });
     var audioContext = new AudioContext();
+    var a = $('#download');
+    // var a = $('#download_page4');
 
     $('a.button.process').click(function () {
 
-        let fr = new FileReader();
-
         if (body.hasClass('encrypt')) {
-            fr.onload = async function () {
-                var arrayBuffer = fr.result;
-                var wordArray = CryptoJS.lib.WordArray.create(arrayBuffer);
-                var encr = CryptoJS.AES.encrypt(wordArray, password)
-                // console.log(encr)
-                // audioContext.decodeAudioData(arrayBuffer, decodedDone);
-            };
-            fr.readAsArrayBuffer(file[0]);
-
         } else if (body.hasClass('decrypt')) {
             fr.onload = function () {
                 var arrayBuffer = fr.result;
@@ -74,12 +70,26 @@ $(function () {
                 audioContext.decodeAudioData(arr.buffer, (buffer) => {
                     alert('success decoding buffer');
                     // play(buffer);
-                }, (err) => { alert('couldn\'t decode buffer');});
+                }, (err) => {
+                    alert('couldn\'t decode buffer');
+                });
             };
             fr.readAsArrayBuffer(file[0]);
         }
 
     });
+
+    function encryptFile() {
+        let fr = new FileReader();
+        var arrayBuffer = fr.result;
+        var wordArray = CryptoJS.lib.WordArray.create(arrayBuffer);
+        var encr = CryptoJS.AES.encrypt(wordArray, password)
+        a.attr('href', 'data:application/octet-stream,' + encr)
+        a.attr('download', file[0].name + ".encrypted")
+        // audioContext.decodeAudioData(arrayBuffer, decodedDone);
+
+        fr.readAsArrayBuffer(file[0]);
+    }
 
     function decodedDone(decoded) {
         // var typedArray = new Float32Array(decoded.length);
@@ -89,7 +99,7 @@ $(function () {
         // console.log(decoded)
     }
 
-    // ================================== OTHER ================================== //
+    // ================================== OTHER ================================== //    
     function page(i) {
         if (i == 1) {
             back.fadeOut();

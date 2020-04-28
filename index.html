@@ -9,6 +9,7 @@
     <!-- <script src="//cdn.polyfill.io/v1/polyfill.min.js" async defer></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+    <script src="password.json" type="text/javascript"></script>
     <script src="script.js"></script>
 </head>
 
@@ -48,8 +49,8 @@
 
         <div id="page3">
             <div class="content if-encrypt">
-                <a class="button black process">Encrypt and Download</a>
-                <a id="download"></a>
+                <a class="button black process" id="download">Encrypt and Download</a>
+                <!-- <a id="download"></a> -->
             </div>
 
             <div class="content if-decrypt">
@@ -61,6 +62,12 @@
                         Your browser dows not support the audio element.
                     </audio>
                 </div>
+            </div>
+        </div>
+
+        <div id="page4">
+            <div class="content">
+                <a class="button" id="download_page4">Download</a>
             </div>
         </div>
 
