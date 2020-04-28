@@ -54,13 +54,10 @@ $(function () {
 
     // ================================== page 3 ================================== //
 
-    // var password = JSON.parse(password);
     var password = "";
     $.getJSON("password.json").then(function (data) {
         password = data[0].password
     });
-    var audioContext = new AudioContext();
-    // var a = $('#download_page4');
 
     $('a.button.process').click(function () {
 
@@ -81,7 +78,6 @@ $(function () {
 
         } else if (body.hasClass('decrypt')) {
             var audio = $('#audio')
-            var asrc = $('#audioSrc')
             var extension = file[0].name.split('.')[1]
             fr.onload = function () {
                 var arrayBuffer = fr.result;
@@ -116,13 +112,6 @@ $(function () {
         // move #stage (chaning the top property will trigger a css transition on element)
         // i-1 so the page will start from 1:
         stage.css('top', (-(i - 1) * 100) + '%');
-    }
-
-    function play(decoded) {
-        const source = audioContext.createBufferSource();
-        source.buffer = decoded;
-        source.connect(audioContext.destination);
-        source.start();
     }
 
     function b64ToUint6(nChr) {
