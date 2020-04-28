@@ -83,26 +83,15 @@ $(function () {
             var audio = $('#audio')
             var asrc = $('#audioSrc')
             var extension = file[0].name.split('.')[1]
-            console.log(extension)
             fr.onload = function () {
                 var arrayBuffer = fr.result;
                 var decr = CryptoJS.AES.decrypt(arrayBuffer, password)
                 var arr = base64DecToArr(decr.toString(CryptoJS.enc.Base64));
-                audioContext.decodeAudioData(arr.buffer, (buffer) => {
-                    console.log('Success decoding buffer');
-                    const source = audioContext.createBufferSource();
-                    source.buffer = buffer;
-                    // source.connect(audioContext.destination);
-                    const blob = (extension=="wav") ? new Blob([buffer], {type: "audio/wav"}) : new Blob([buffer], {type: "audio/mp3"})
-                    const url = window.URL.createObjectURL(blob)
-                    asrc.src = source
-                    // audio.load()
-                    window.URL.revokeObjectURL(url)
-                    page(4)
-                }, (err) => {
-                    console.log('Couldn\'t decode buffer')
-                    alert('Make sure the chosen file is encrypted by this tool.');
-                });
+                const blob = (extension=="wav") ? new Blob([arr], {type: 'audio/wav'}) : new Blob([arr], {type: 'audio/mp3'})
+                var url = window.URL.createObjectURL(blob)
+                console.log(url)
+                audio.attr('src', url)
+                page(4)
             };
             fr.readAsText(file[0]);
         }
@@ -113,6 +102,7 @@ $(function () {
         $('#page2 input[type=file]').replaceWith(function() {
             return $(this).clone()
         });
+        window.URL.revokeObjectURL($('#audio').attr('src'))
         page(1);
     })
 
