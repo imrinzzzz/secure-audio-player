@@ -19,29 +19,38 @@ body.decrypt .if-decrypt {
     display: block;
 }
 
-body{
+body {
     font-weight: 500;
     color: black;
-    width:100%;
-    height:100%;
-    position:absolute;
-    overflow:hidden;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
     background-color: #076AE1;
     font-family: 'Roboto', sans-serif;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+
 }
 
-#stage{
-    width:100%;
-    height:100%;
-    position:absolute;
-    top:0;
-    left:0;
-    transition:top 0.4s;
+#stage {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: top 0.4s;
 }
 
-#stage > div{  /* The step divs */
-    height:100%;
-    position:relative;
+#stage>div {
+    /* The step divs */
+    height: 100%;
+    position: relative;
 }
 
 
@@ -51,7 +60,7 @@ body{
     transform: translateY(-50%);
 }
 
-.inside > h1 {
+.inside>h1 {
     top: 20%;
     transform: translateY(-50%);
 }
@@ -65,12 +74,12 @@ body{
     color: #076AE1;
 }
 
-.content{
-    position:absolute;
-    text-align:center;
+.content {
+    position: absolute;
+    text-align: center;
     left: 50%;
-    top:50%;
-    width:80%;
+    top: 50%;
+    width: 80%;
     height: 70%;
     background-color: white;
     border-radius: 100px;
@@ -102,11 +111,11 @@ a.start:hover {
 }
 
 a, a:visited {
-	outline:none;
+    outline: none;
 }
 
-a:hover{
-    text-decoration:none;
+a:hover {
+    text-decoration: none;
     transform: scale(1.05);
     transition: initial 0.25s ease;
 }
@@ -140,11 +149,11 @@ a:hover{
 }
 
 .button::before {
-    content:'';
+    content: '';
     display: inline-block;
     vertical-align: middle;
-	box-shadow:3px 3px 0 rgba(0,0,0,0.08);
-	cursor: pointer;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.08);
+    cursor: pointer;
 }
 
 .comment {

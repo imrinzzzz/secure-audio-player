@@ -83,10 +83,11 @@ $(function () {
                 var arrayBuffer = fr.result;
                 var decr = CryptoJS.AES.decrypt(arrayBuffer, password)
                 var arr = base64DecToArr(decr.toString(CryptoJS.enc.Base64));
-                const blob = (extension=="wav") ? new Blob([arr], {type: 'audio/wav'}) : new Blob([arr], {type: 'audio/mp3'})
+                const blob = (extension == "wav") ? new Blob([arr], {type: 'audio/wav'}) : new Blob([arr], {type: 'audio/mp3'})
                 var url = window.URL.createObjectURL(blob)
                 console.log(url)
                 audio.attr('src', url)
+                audio.prop('volume', 0.5)
                 page(4)
             };
             fr.readAsText(file[0]);
@@ -94,11 +95,17 @@ $(function () {
 
     });
 
-    back.click(function() {
-        $('#page2 input[type=file]').replaceWith(function() {
+    back.click(function () {
+        $('#page2 input[type=file]').replaceWith(function () {
             return $(this).clone()
         });
-        window.URL.revokeObjectURL($('#audio').attr('src'))
+        if (body.hasClass('decrypt')) {
+            const audio = $('#audio')
+            if(!audio.prop('paused') && audio.prop('duration') > 0) {
+                audio.get(0).pause();
+            }
+            window.URL.revokeObjectURL($('#audio').attr('src'))
+        }
         page(1);
     })
 
